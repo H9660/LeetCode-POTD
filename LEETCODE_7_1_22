@@ -1,0 +1,20 @@
+// https://leetcode.com/problems/maximum-ice-cream-bars/
+
+class Solution {
+public:
+    
+    int helper(vector<int> &arr, int coins, int n, int ans)
+    {
+        if(n==0)
+        return 0;
+        if(arr[n]>coins)
+        return ans;
+
+        return ans+=1+ min(helper(arr, coins, n-1,ans), helper(arr, coins-arr[n-1], n-1,ans)); 
+    }
+    int maxIceCream(vector<int>& arr ,int coins) {
+       int ans=0;
+        return helper(arr, coins, arr.size(), ans);
+
+    }
+};
